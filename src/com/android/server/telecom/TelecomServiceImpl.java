@@ -2557,7 +2557,8 @@ public class TelecomServiceImpl {
         }
 
         @Override
-        public void setTestPhoneAcctSuggestionComponent(String flattenedComponentName) {
+        public void setTestPhoneAcctSuggestionComponent(String flattenedComponentName,
+                UserHandle userHandle) {
             try {
                 Log.startSession("TSI.sPASA");
                 enforceModifyPermission();
@@ -2567,6 +2568,7 @@ public class TelecomServiceImpl {
                 }
                 synchronized (mLock) {
                     PhoneAccountSuggestionHelper.setOverrideServiceName(flattenedComponentName);
+                    PhoneAccountSuggestionHelper.setOverrideUserHandle(userHandle);
                 }
             } finally {
                 Log.endSession();
